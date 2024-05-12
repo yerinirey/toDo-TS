@@ -11,6 +11,7 @@
     "@types/react": "^18.2.72",
     "@types/react-dom": "^18.2.22",
     "react": "^18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.2",
     "react-query": "^3.39.3",
@@ -46,6 +47,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-beautiful-dnd": "^13.1.8",
     "@types/react-query": "^1.2.9",
     "@types/react-router-dom": "^5.3.3",
     "@types/styled-components": "^5.1.34"
