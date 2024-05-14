@@ -3,6 +3,8 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { toDoState } from "./atoms";
 import Board from "./Components/Board";
+import { useState } from "react";
+import AddBoard from "./Components/AddBoard";
 
 const Wrapper = styled.div`
   display: flex;
@@ -62,6 +64,7 @@ function App() {
           {Object.keys(toDos).map((boardId) => (
             <Board boardId={boardId} key={boardId} toDos={toDos[boardId]} />
           ))}
+          <AddBoard />
         </Boards>
       </Wrapper>
     </DragDropContext>

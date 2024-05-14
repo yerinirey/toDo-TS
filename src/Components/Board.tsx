@@ -8,11 +8,10 @@ import { useSetRecoilState } from "recoil";
 
 const Wrapper = styled.div`
   width: 300px;
-  padding-top: 10px;
-  padding-top: 10px;
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 20px;
   background-color: ${(props) => props.theme.boardColor};
-  min-height: 300px;
+  /* min-height: 300px; */
   display: flex;
   flex-direction: column;
 `;
@@ -36,9 +35,9 @@ const Area = styled.div<IAreaProps>`
       : props.isDraggingFromThis
       ? "#b2bec3"
       : "transparent"};
-  flex-grow: 1;
+  /* flex-grow: 1; */
   transition: background-color 0.3s ease-in-out;
-  padding: 10px;
+  /* padding: 10px; */
 `;
 
 interface IBoardProps {
@@ -52,8 +51,22 @@ interface IForm {
 
 const Form = styled.form`
   width: 100%;
+  border-radius: 10px;
+  &:hover {
+    background-color: #272f27;
+    transition: background-color 0.1s ease-in-out;
+  }
   input {
+    border: none;
+    background-color: transparent;
+    padding: 10px;
     width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    color: ${(props) => props.theme.textColor};
+    &:focus {
+      font-weight: 200;
+    }
   }
 `;
 
@@ -77,13 +90,7 @@ function Board({ toDos, boardId }: IBoardProps) {
   return (
     <Wrapper>
       <Title>{boardId}</Title>
-      <Form onSubmit={handleSubmit(onValid)}>
-        <input
-          {...register("toDo", { required: true })}
-          type="text"
-          placeholder={`Add task on ${boardId}`}
-        />
-      </Form>
+
       <Droppable droppableId={boardId}>
         {(magic, info) => (
           <Area
@@ -104,6 +111,13 @@ function Board({ toDos, boardId }: IBoardProps) {
           </Area>
         )}
       </Droppable>
+      <Form onSubmit={handleSubmit(onValid)}>
+        <input
+          {...register("toDo", { required: true })}
+          type="text"
+          placeholder={`Add task on ${boardId}`}
+        />
+      </Form>
     </Wrapper>
   );
 }
