@@ -1,10 +1,11 @@
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
+import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { toDoState } from "./atoms";
 import Board from "./Components/Board";
 import { useState } from "react";
 import AddBoard from "./Components/AddBoard";
+import TrashBin from "./Components/TrashBin";
 
 const Wrapper = styled.div`
   display: flex;
@@ -28,6 +29,7 @@ function App() {
     const { destination, draggableId, source } = info;
     console.log(info);
     if (!destination) return;
+
     if (destination.droppableId === source.droppableId) {
       // same board movement
       setToDos((allBoards) => {
@@ -41,7 +43,17 @@ function App() {
         };
       });
     }
-    if (destination.droppableId !== source.droppableId) {
+    if (destination.droppableId === "trash-bin") {
+      console.log("trash!");
+      setToDos((allBoards) => {
+        const sourceBoard = [...allBoards[source.droppableId]];
+        sourceBoard.splice(source.index, 1);
+        return {
+          ...allBoards,
+          [source.droppableId]: sourceBoard,
+        };
+      });
+    } else if (destination.droppableId !== source.droppableId) {
       // cross board movement
       setToDos((allBoards) => {
         const sourceBoard = [...allBoards[source.droppableId]];
@@ -57,6 +69,7 @@ function App() {
       });
     }
   };
+
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Wrapper>
@@ -66,6 +79,7 @@ function App() {
           ))}
           <AddBoard />
         </Boards>
+        <TrashBin />
       </Wrapper>
     </DragDropContext>
   );

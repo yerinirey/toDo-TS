@@ -29,14 +29,14 @@ interface IAreaProps {
 }
 
 const Area = styled.div<IAreaProps>`
-  background-color: ${(props) =>
+  /* background-color: ${(props) =>
     props.isDraggingOver
       ? "#dfe6e9"
       : props.isDraggingFromThis
       ? "#b2bec3"
-      : "transparent"};
+      : "transparent"};*/
   /* flex-grow: 1; */
-  transition: background-color 0.3s ease-in-out;
+  /* transition: background-color 0.3s ease-in-out; */
   /* padding: 10px; */
 `;
 
@@ -90,7 +90,6 @@ function Board({ toDos, boardId }: IBoardProps) {
   return (
     <Wrapper>
       <Title>{boardId}</Title>
-
       <Droppable droppableId={boardId}>
         {(magic, info) => (
           <Area
