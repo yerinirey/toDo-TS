@@ -57,6 +57,7 @@ const AddBoardBox = styled.div`
 
 const AddButton = styled.button`
   font-size: 14px;
+  font-weight: 700;
   border: none;
   border-radius: 5px;
   color: ${(props) => props.theme.boardColor};
@@ -90,7 +91,7 @@ function AddBoard() {
     makeBoard((allBoards) => {
       return {
         ...allBoards,
-        [boardName]: [],
+        [boardName + ""]: [],
       };
     });
     setValue("boardName", "");
