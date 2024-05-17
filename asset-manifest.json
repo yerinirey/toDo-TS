@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/toDo-TS/static/js/main.8e96c35f.js",
+    "index.html": "/toDo-TS/index.html",
+    "main.8e96c35f.js.map": "/toDo-TS/static/js/main.8e96c35f.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.8e96c35f.js"
+  ]
+}
