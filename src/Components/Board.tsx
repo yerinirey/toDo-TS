@@ -1,10 +1,10 @@
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import DraggableCard from "./DraggableCard";
 import styled from "styled-components";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { IToDo, IToDoState, toDoState } from "../atoms";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { saveToDos } from "../local";
 const Wrapper = styled.div`
   width: 340px;
@@ -13,15 +13,11 @@ const Wrapper = styled.div`
   background-color: ${(props) => props.theme.boardColor};
   display: flex;
   flex-direction: column;
-  /* &.dragging {
-    transform: skewX(28px);
-  } */
 `;
 
 const Header = styled.div`
   display: flex;
   width: 100%;
-  /* background-color: teal; */
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -51,18 +47,7 @@ interface IAreaProps {
   $isDraggingOver: boolean;
 }
 
-const Area = styled.div<IAreaProps>`
-  /*background-color: ${(props) =>
-    props.$isDraggingOver
-      ? "#dfe6e9"
-      : props.$isDraggingFromThis
-      ? "#b2bec3"
-      : "transparent"};
-    flex-grow: 1;
-    transition: background-color 0.3s ease-in-out;
-    padding: 10px;
-  */
-`;
+const Area = styled.div<IAreaProps>``;
 
 interface IBoardProps {
   toDos: IToDo[];

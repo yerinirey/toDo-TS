@@ -17,7 +17,6 @@ const Wrapper = styled.div`
 `;
 const Boards = styled.div`
   display: flex;
-  /* justify-content: center; */
   align-items: flex-start;
   gap: 10px;
   width: 100%;
@@ -25,16 +24,12 @@ const Boards = styled.div`
 
 function App() {
   const [toDos, setToDos] = useRecoilState(toDoState);
-  const onDragStart = (initial: { draggableId: string }) => {
-    // console.log("initial\n", initial);
-  };
   const onDragEnd = (info: DropResult) => {
-    // console.log(info);
     const { destination, draggableId, source } = info;
     if (!destination) return;
 
     /* board Movement */
-    if (info.type == "boards") {
+    if (info.type === "boards") {
       setToDos((allBoards) => {
         const boardIds = Object.keys(allBoards);
         boardIds.splice(source.index, 1);
@@ -46,12 +41,6 @@ function App() {
           reorderBoards[id] = allBoards[id];
         });
         return reorderBoards;
-        /* reduce: 배열을 순회하며 누적기에 값을 추가하는 방법으로 새로운 객체 생성 가능 */
-        // const reorderBoards: IToDoState = boardIds.reduce((acc, id) => {
-        //   acc[id] = allBoards[id];
-        //   return acc;
-        // }, {} as IToDoState);
-        // return reorderBoards;
       });
     } else {
       if (destination.droppableId === source.droppableId) {
@@ -102,7 +91,7 @@ function App() {
   }, [toDos]);
   return (
     <Wrapper>
-      <DragDropContext onDragStart={onDragStart} onDragEnd={onDragEnd}>
+      <DragDropContext onDragEnd={onDragEnd}>
         <Droppable
           droppableId={"boards"}
           type={"boards"}
