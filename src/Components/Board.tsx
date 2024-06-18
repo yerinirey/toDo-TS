@@ -13,6 +13,10 @@ const Wrapper = styled.div`
   background-color: ${(props) => props.theme.boardColor};
   display: flex;
   flex-direction: column;
+  margin-right: 10px;
+  &.dragging {
+    filter: drop-shadow(0 0 10px #053d5f);
+  }
 `;
 
 const Header = styled.div`
@@ -133,10 +137,8 @@ function Board({ toDos, boardId, index }: IBoardProps) {
   const [toggle, setToggle] = useState(false);
   const { register, setValue, handleSubmit } = useForm<IForm>();
   const onClick = () => {
-    console.log("clicked", boardId);
     setToDos((allBoards) => {
       const boardIds = Object.keys(allBoards).filter((v) => v !== boardId);
-      console.log(boardIds);
       const reorderBoards = boardIds.reduce((acc, boardId) => {
         acc[boardId] = allBoards[boardId];
         return acc;
@@ -146,7 +148,6 @@ function Board({ toDos, boardId, index }: IBoardProps) {
   };
 
   const onValid = ({ toDo }: IForm) => {
-    console.log(toDo);
     const newToDo = {
       id: Date.now(),
       text: toDo,
@@ -164,9 +165,9 @@ function Board({ toDos, boardId, index }: IBoardProps) {
   }, [toDo]);
   return (
     <Draggable draggableId={boardId} index={index}>
-      {(magic, { isDragging }) => (
+      {(magic, snapshot) => (
         <Wrapper
-          className={isDragging ? "dragging" : ""}
+          className={snapshot.isDragging ? "dragging" : ""}
           ref={magic.innerRef}
           {...magic.draggableProps}
         >

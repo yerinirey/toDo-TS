@@ -33,7 +33,7 @@ function TrashBin() {
             {...magic.droppableProps}
           >
             <span>🗑️</span>
-            {magic.placeholder ? null : null}
+            {/* {magic.placeholder ? null : null} */}
           </Area>
         </>
       )}

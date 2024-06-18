@@ -18,7 +18,6 @@ const Wrapper = styled.div`
 const Boards = styled.div`
   display: flex;
   align-items: flex-start;
-  gap: 10px;
   width: 100%;
 `;
 
@@ -33,9 +32,7 @@ function App() {
       setToDos((allBoards) => {
         const boardIds = Object.keys(allBoards);
         boardIds.splice(source.index, 1);
-        console.log("After removing:", boardIds);
         boardIds.splice(destination.index, 0, draggableId);
-        console.log("After inserting:", boardIds);
         const reorderBoards: IToDoState = {};
         boardIds.forEach((id) => {
           reorderBoards[id] = allBoards[id];
@@ -58,7 +55,6 @@ function App() {
       }
       if (destination.droppableId === "trash-bin") {
         // card Movement - trash
-        console.log("trash!");
         setToDos((allBoards) => {
           const sourceBoard = [...allBoards[source.droppableId]];
           sourceBoard.splice(source.index, 1);
@@ -84,8 +80,6 @@ function App() {
       }
     }
   };
-  console.log(toDos);
-  console.log(Object.keys(toDos));
   useEffect(() => {
     saveToDos(toDos);
   }, [toDos]);

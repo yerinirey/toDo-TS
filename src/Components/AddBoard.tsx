@@ -91,7 +91,7 @@ function AddBoard() {
     makeBoard((allBoards) => {
       return {
         ...allBoards,
-        [boardName + ""]: [],
+        [boardName.toString()]: [],
       };
     });
     setValue("boardName", "");
